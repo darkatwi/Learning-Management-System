@@ -114,11 +114,6 @@ Here’s a visual representation of the database structure:
 ![LMS Database ER Diagram](LMS.Api/Assetss/sql.png)
 
 
-## Notes
-
-* This project focuses only on the **Users** entity
-* Authentication and authorization are **not implemented**
-* Passwords are stored as plain text **for educational purposes only**
 
 ## Author
 
