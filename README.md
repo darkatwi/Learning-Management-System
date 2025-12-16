@@ -1,119 +1,98 @@
-```md
+
+
 # Learning Management System – Users API
 
-This project is a **Backend Web API** built using **ASP.NET Core Web API** and **Entity Framework Core**.  
-It implements full **CRUD operations** for the **Users** entity as part of a Learning Management System (LMS).
+This project is a **Backend Web API** built with **ASP.NET Core Web API** and **Entity Framework Core**.
+It provides full **CRUD operations** for the **Users** entity within a Learning Management System (LMS).
 
----
+## Technologies Used
 
-## 📌 Technologies Used
+* ASP.NET Core Web API
+* Entity Framework Core
+* SQL Server
+* Swagger (OpenAPI)
+* C#
 
-- ASP.NET Core Web API
-- Entity Framework Core
-- SQL Server
-- Swagger (OpenAPI)
-- C#
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```
-
 LMS.Api/
-│
-├── Controllers/        # API Controllers (UsersController)
-├── Models/             # Entity Models (User)
-├── Data/               # DbContext
-├── Migrations/         # EF Core migrations
-├── Program.cs          # Application entry point
-├── appsettings.json    # Configuration & connection string
-
+├── Controllers/      → API Controllers (UsersController)
+├── Models/           → Entity Models (User)
+├── Data/             → DbContext
+├── Migrations/       → EF Core migrations
+├── Program.cs        → Application entry point
+└── appsettings.json  → Configuration & connection string
 ```
 
----
-
-## 🧑‍💻 User Entity
+## User Entity
 
 The **User** table contains the following fields:
 
-- `Id` (int)
-- `FullName` (string)
-- `Email` (string)
-- `PasswordHash` (string)
-- `Role` (string)
-- `CreatedAt` (DateTime)
+* `Id` (int)
+* `FullName` (string)
+* `Email` (string)
+* `PasswordHash` (string)
+* `Role` (string)
+* `CreatedAt` (DateTime)
 
----
+## CRUD Operations (REST API)
 
-## 🔁 CRUD Operations (REST API)
+| Operation      | HTTP Method | Endpoint          |
+| -------------- | ----------- | ----------------- |
+| Get all users  | GET         | `/api/Users`      |
+| Get user by ID | GET         | `/api/Users/{id}` |
+| Create user    | POST        | `/api/Users`      |
+| Update user    | PUT         | `/api/Users/{id}` |
+| Delete user    | DELETE      | `/api/Users/{id}` |
 
-| Operation        | HTTP Method | Endpoint            |
-|------------------|------------|---------------------|
-| Get all users    | GET        | `/api/Users`        |
-| Get user by ID   | GET        | `/api/Users/{id}`   |
-| Create user      | POST       | `/api/Users`        |
-| Update user      | PUT        | `/api/Users/{id}`   |
-| Delete user      | DELETE     | `/api/Users/{id}`   |
-
----
-
-## 🧪 API Testing
+## API Testing
 
 The API is tested using **Swagger UI**.
-
 After running the project, open:
 
 ```
-
-[https://localhost:{port}/swagger](https://localhost:{port}/swagger)
-
+https://localhost:{port}/swagger
 ```
 
-Swagger allows:
-- Creating users
-- Viewing users
-- Updating users
-- Deleting users
+Swagger allows you to:
 
----
+* Create users
+* View users
+* Update users
+* Delete users
 
-## 🗄️ Database
+## Database
 
-- Database is created using **Entity Framework Core Migrations**
-- SQL Server is used as the database engine
-- Migrations are stored in the `Migrations` folder
+* Database is created using **Entity Framework Core Migrations**
+* SQL Server is used as the database engine
+* Migrations are stored in the `Migrations` folder
 
----
-
-## 🚀 How to Run the Project
+## How to Run the Project
 
 1. Open the solution in **Visual Studio**
 2. Update the connection string in `appsettings.json` if needed
 3. Run the following commands in **Package Manager Console**:
 
 ```
-
 Add-Migration InitialUsers
 Update-Database
-
 ```
 
 4. Run the project
 5. Open Swagger and test the API
 
----
+## Notes
 
-## 📌 Notes
+* This project focuses only on the **Users** entity
+* Authentication and authorization are **not implemented**
+* Passwords are stored as plain text **for educational purposes only**
 
-- This project focuses only on the **Users** entity as required
-- Authentication and authorization are not implemented
-- Passwords are stored as plain text for educational purposes only
+## Author
 
----
-
-## 👤 Author
-
-**Zenith**  
+**Zenith**
 Learning Management System – Backend API
-```
+
+---
+
+If you want, I can also make an **even slicker, visually structured Markdown** version that looks professional on GitHub with badges, icons, and collapsible sections. Do you want me to do that?
