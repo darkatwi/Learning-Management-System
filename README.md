@@ -90,7 +90,7 @@ Update-Database
 
 ## Database
 
-The SQL Server database schema is included in the [`Database/LMS_DB_Schema.sql`](Database/LMS_DB_Schema.sql) file.  
+The SQL Server database schema is included in the [`Database/LMS_DB_Schema.sql`](Database/LMS_DB_SCHEMA.sql) file.  
 
 It contains the following tables:
 
