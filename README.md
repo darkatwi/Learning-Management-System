@@ -1,5 +1,3 @@
-
-
 ```md
 # Learning Management System – Users API
 
@@ -50,21 +48,22 @@ The **User** table contains the following fields:
 
 ## 🔁 CRUD Operations (REST API)
 
-| Operation | HTTP Method | Endpoint |
-|----------|------------|----------|
-| Get all users | GET | `/api/Users` |
-| Get user by ID | GET | `/api/Users/{id}` |
-| Create user | POST | `/api/Users` |
-| Update user | PUT | `/api/Users/{id}` |
-| Delete user | DELETE | `/api/Users/{id}` |
+| Operation        | HTTP Method | Endpoint            |
+|------------------|------------|---------------------|
+| Get all users    | GET        | `/api/Users`        |
+| Get user by ID   | GET        | `/api/Users/{id}`   |
+| Create user      | POST       | `/api/Users`        |
+| Update user      | PUT        | `/api/Users/{id}`   |
+| Delete user      | DELETE     | `/api/Users/{id}`   |
 
 ---
 
 ## 🧪 API Testing
 
-The API is fully tested using **Swagger UI**.
+The API is tested using **Swagger UI**.
 
 After running the project, open:
+
 ```
 
 [https://localhost:{port}/swagger](https://localhost:{port}/swagger)
@@ -91,13 +90,15 @@ Swagger allows:
 
 1. Open the solution in **Visual Studio**
 2. Update the connection string in `appsettings.json` if needed
-3. Run the following commands in Package Manager Console:
+3. Run the following commands in **Package Manager Console**:
+
 ```
 
 Add-Migration InitialUsers
 Update-Database
 
 ```
+
 4. Run the project
 5. Open Swagger and test the API
 
@@ -114,8 +115,5 @@ Update-Database
 ## 👤 Author
 
 **Zenith**  
-Learning Management System – Backend API  
+Learning Management System – Backend API
 ```
-
----
-
