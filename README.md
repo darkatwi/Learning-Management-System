@@ -50,7 +50,7 @@ The **User** table contains the following fields:
 
 Here’s a preview of the Users API in Swagger UI:
 
-![Swagger UI](Assetss/swagger.png.png)
+![Swagger UI](LMS.Api/Assetss/swagger.png.png)
 
 ## API Testing
 
