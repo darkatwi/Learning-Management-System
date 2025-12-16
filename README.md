@@ -88,6 +88,32 @@ Update-Database
 4. Run the project
 5. Open Swagger and test the API
 
+## Database
+
+The SQL Server database schema is included in the [`Database/LMS_DB_Schema.sql`](Database/LMS_DB_Schema.sql) file.  
+
+It contains the following tables:
+
+* Users  
+* Courses  
+* Lessons  
+* Quizzes  
+* Questions  
+* Answers  
+* QuizAttempts  
+* LessonCompletion  
+* Certificates  
+* StudentAnswers  
+
+All **primary keys**, **foreign keys**, and **relationships** are defined in the script.  
+
+### Entity-Relationship Diagram
+
+Here’s a visual representation of the database structure:
+
+![LMS Database ER Diagram](LMS.Api/Assetss/sql.png)
+
+
 ## Notes
 
 * This project focuses only on the **Users** entity
