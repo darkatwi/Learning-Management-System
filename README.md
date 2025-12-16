@@ -46,6 +46,12 @@ The **User** table contains the following fields:
 | Update user    | PUT         | `/api/Users/{id}` |
 | Delete user    | DELETE      | `/api/Users/{id}` |
 
+## API Review
+
+Here’s a preview of the Users API in Swagger UI:
+
+![Swagger UI](Assetss/swagger.png.png)
+
 ## API Testing
 
 The API is tested using **Swagger UI**.
@@ -93,6 +99,3 @@ Update-Database
 **Zenith**
 Learning Management System – Backend API
 
----
-
-If you want, I can also make an **even slicker, visually structured Markdown** version that looks professional on GitHub with badges, icons, and collapsible sections. Do you want me to do that?
