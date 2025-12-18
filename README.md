@@ -115,8 +115,5 @@ Here’s a visual representation of the database structure:
 
 
 
-## Author
 
-**Zenith**
-Learning Management System – Backend API
 
