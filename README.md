@@ -1,9 +1,8 @@
 
+## Learning Management System – Backend API
 
-# Learning Management System – Users API
-
-This project is a **Backend Web API** built with **ASP.NET Core Web API** and **Entity Framework Core**.
-It provides full **CRUD operations** for the **Users** entity within a Learning Management System (LMS).
+This project is a Backend Web API built with ASP.NET Core Web API and Entity Framework Core.
+It provides full CRUD operations and endpoints for managing Users, Courses, Quizzes, Questions, Certificates, and Lesson Completions.
 
 ## Technologies Used
 
@@ -24,27 +23,88 @@ LMS.Api/
 ├── Program.cs        → Application entry point
 └── appsettings.json  → Configuration & connection string
 ```
+## API Endpoints
 
-## User Entity
+### Certificates
 
-The **User** table contains the following fields:
+| Method | Endpoint                         |
+| ------ | -------------------------------- |
+| GET    | /users/{userId}/certificates     |
+| POST   | /courses/{courseId}/certificates |
 
-* `Id` (int)
-* `FullName` (string)
-* `Email` (string)
-* `PasswordHash` (string)
-* `Role` (string)
-* `CreatedAt` (DateTime)
+### Courses
 
-## CRUD Operations (REST API)
+| Method | Endpoint          |
+| ------ | ----------------- |
+| GET    | /api/Courses      |
+| POST   | /api/Courses      |
+| GET    | /api/Courses/{id} |
+| PUT    | /api/Courses/{id} |
+| DELETE | /api/Courses/{id} |
 
-| Operation      | HTTP Method | Endpoint          |
-| -------------- | ----------- | ----------------- |
-| Get all users  | GET         | `/api/Users`      |
-| Get user by ID | GET         | `/api/Users/{id}` |
-| Create user    | POST        | `/api/Users`      |
-| Update user    | PUT         | `/api/Users/{id}` |
-| Delete user    | DELETE      | `/api/Users/{id}` |
+### Lesson Completions
+
+| Method | Endpoint                          |
+| ------ | --------------------------------- |
+| POST   | /lessons/{lessonId}/complete      |
+| GET    | /users/{userId}/lesson-completion |
+
+### Questions
+
+| Method | Endpoint                        |
+| ------ | ------------------------------- |
+| GET    | /quizzes/{quizId}/questions     |
+| POST   | /quizzes/{quizId}/questions     |
+| GET    | /api/Questions/{id}             |
+| PUT    | /api/Questions/{id}             |
+| DELETE | /api/Questions/{id}             |
+| GET    | /questions/{questionId}/answers |
+| POST   | /questions/{questionId}/answers |
+
+### Quiz Attempts
+
+| Method | Endpoint                            |
+| ------ | ----------------------------------- |
+| POST   | /quizzes/{quizId}/attempts          |
+| GET    | /quizzes/{quizId}/attempts/{userId} |
+| POST   | /quiz-attempts/{attemptId}/answers  |
+| GET    | /quiz-attempts/{attemptId}/answers  |
+
+### Quizzes
+
+| Method | Endpoint                    |
+| ------ | --------------------------- |
+| GET    | /courses/{courseId}/quizzes |
+| GET    | /lessons/{lessonId}/quizzes |
+| POST   | /api/Quizzes                |
+| GET    | /api/Quizzes/{id}           |
+| PUT    | /api/Quizzes/{id}           |
+| DELETE | /api/Quizzes/{id}           |
+
+### Users
+
+| Method | Endpoint        |
+| ------ | --------------- |
+| GET    | /api/Users      |
+| POST   | /api/Users      |
+| GET    | /api/Users/{id} |
+| PUT    | /api/Users/{id} |
+| DELETE | /api/Users/{id} |
+
+## Schemas
+
+* Answer
+* Certificate
+* Course
+* Lesson
+* LessonCompletion
+* Question
+* Quiz
+* QuizAttempt
+* StudentAnswer
+* User
+
+---
 
 ## API Review
 
