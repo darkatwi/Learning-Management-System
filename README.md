@@ -1,8 +1,8 @@
 
-## Learning Management System – Backend API
+Learning Management System (LMS)
 
-This project is a Backend Web API built with ASP.NET Core Web API and Entity Framework Core.
-It provides full CRUD operations and endpoints for managing Users, Courses, Quizzes, Questions, Certificates, and Lesson Completions.
+This project is a Learning Management System (LMS) built with ASP.NET Core Web API, Entity Framework Core, and SQL Server.
+It supports user management, courses, lessons, quizzes, certificates, and lesson completion tracking, providing a complete backend for an LMS application.
 
 ## Technologies Used
 
