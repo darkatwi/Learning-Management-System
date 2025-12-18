@@ -1,5 +1,5 @@
 
-Learning Management System (LMS)
+## Learning Management System (LMS)
 
 This project is a Learning Management System (LMS) built with ASP.NET Core Web API, Entity Framework Core, and SQL Server.
 It supports user management, courses, lessons, quizzes, certificates, and lesson completion tracking, providing a complete backend for an LMS application.
