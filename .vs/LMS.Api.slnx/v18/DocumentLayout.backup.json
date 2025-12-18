@@ -1,12 +1,92 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|c:\\users\\aub\\source\\repos\\lms.api\\lms.api\\controllers\\quizattemptscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|solutionrelative:lms.api\\controllers\\quizattemptscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|c:\\users\\aub\\source\\repos\\lms.api\\lms.api\\models\\quizattempt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|solutionrelative:lms.api\\models\\quizattempt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|c:\\users\\aub\\source\\repos\\lms.api\\lms.api\\controllers\\questionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|solutionrelative:lms.api\\controllers\\questionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|c:\\users\\aub\\source\\repos\\lms.api\\lms.api\\controllers\\quizzescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24AB9D98-7955-2539-FDE6-370BAA8E207D}|LMS.Api\\LMS.Api.csproj|solutionrelative:lms.api\\controllers\\quizzescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuizAttempt.cs",
+              "DocumentMoniker": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Models\\QuizAttempt.cs",
+              "RelativeDocumentMoniker": "LMS.Api\\Models\\QuizAttempt.cs",
+              "ToolTip": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Models\\QuizAttempt.cs",
+              "RelativeToolTip": "LMS.Api\\Models\\QuizAttempt.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:31:46.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "QuestionsController.cs",
+              "DocumentMoniker": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Controllers\\QuestionsController.cs",
+              "RelativeDocumentMoniker": "LMS.Api\\Controllers\\QuestionsController.cs",
+              "ToolTip": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Controllers\\QuestionsController.cs",
+              "RelativeToolTip": "LMS.Api\\Controllers\\QuestionsController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAIwDgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:29:34.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuizAttemptsController.cs",
+              "DocumentMoniker": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Controllers\\QuizAttemptsController.cs",
+              "RelativeDocumentMoniker": "LMS.Api\\Controllers\\QuizAttemptsController.cs",
+              "ToolTip": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Controllers\\QuizAttemptsController.cs",
+              "RelativeToolTip": "LMS.Api\\Controllers\\QuizAttemptsController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAYwCUAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:30:02.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "QuizzesController.cs",
+              "DocumentMoniker": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Controllers\\QuizzesController.cs",
+              "RelativeDocumentMoniker": "LMS.Api\\Controllers\\QuizzesController.cs",
+              "ToolTip": "C:\\Users\\AUB\\source\\repos\\LMS.Api\\LMS.Api\\Controllers\\QuizzesController.cs",
+              "RelativeToolTip": "LMS.Api\\Controllers\\QuizzesController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAswDAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:29:10.5Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
