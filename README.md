@@ -167,6 +167,7 @@ This LMS backend implements **secure authentication and role-based authorization
 * Supported roles:
 
   * **Admin**
+  * **Instructor**
   * **Student**
 * Protected endpoints using `[Authorize]`
 * Role-restricted endpoints using `[Authorize(Roles = "Admin")]`
