@@ -148,6 +148,79 @@ Update-Database
 4. Run the project
 5. Open Swagger and test the API
 
+
+## 🔐 Authentication & Authorization
+
+This LMS backend implements **secure authentication and role-based authorization** using **ASP.NET Core Identity** and **JWT (JSON Web Tokens)**.
+
+### Authentication Features
+
+* User registration with email & password
+* Secure login with JWT token generation
+* Password hashing handled by ASP.NET Identity
+* Token-based authentication using `Authorization: Bearer <token>`
+* Token validation (issuer, audience, expiration, signing key)
+
+### Authorization & Roles
+
+* Role-based access control using Identity Roles
+* Supported roles:
+
+  * **Admin**
+  * **Student**
+* Protected endpoints using `[Authorize]`
+* Role-restricted endpoints using `[Authorize(Roles = "Admin")]`
+
+Example:
+
+* `GET /api/Users` → **Admin only**
+* Student users receive **403 Forbidden** if accessing admin endpoints
+
+### JWT Configuration
+
+JWT authentication is configured in `Program.cs` using `JwtBearerAuthentication`.
+
+Token contains:
+
+* User ID
+* Email
+* Role claim
+* Expiration time
+* Issuer & Audience validation
+
+### Swagger Authentication Support
+
+Swagger UI is configured to support JWT authentication.
+
+Steps to authenticate in Swagger:
+
+1. Call **POST `/api/Auth/login`**
+2. Copy the returned JWT token
+3. Click **Authorize** (🔒) in Swagger
+4. Enter:
+
+   ```
+   Bearer <your-token>
+   ```
+5. Access protected endpoints directly from Swagger
+
+### Auth Endpoints
+
+| Method | Endpoint             | Description                        |
+| ------ | -------------------- | ---------------------------------- |
+| POST   | `/api/Auth/register` | Register a new user                |
+| POST   | `/api/Auth/login`    | Authenticate and receive JWT token |
+
+---
+
+### Example Authorization Flow
+
+1. Register user
+2. Login → receive JWT
+3. Use JWT in Authorization header
+4. Access protected endpoints
+5. Role-based permissions enforced automatically
+
 ## Database
 
 The SQL Server database schema is included in the [`Database/LMS_DB_Schema.sql`](Database/LMS_DB_SCHEMA.sql) file.  
