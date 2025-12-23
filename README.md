@@ -149,7 +149,7 @@ Update-Database
 5. Open Swagger and test the API
 
 
-## 🔐 Authentication & Authorization
+## Authentication & Authorization
 
 This LMS backend implements **secure authentication and role-based authorization** using **ASP.NET Core Identity** and **JWT (JSON Web Tokens)**.
 
