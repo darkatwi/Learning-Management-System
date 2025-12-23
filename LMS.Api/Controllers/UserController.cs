@@ -1,83 +1,105 @@
-﻿using LMS.Api.Data;
-using LMS.Api.Models;
+﻿using LMS.Api.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace LMS.Api.Controllers
 {
+    [Authorize] 
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly LmsDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public UsersController(LmsDbContext context)
+        public UsersController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        [Authorize(Roles = "Admin")] 
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            var users = _userManager.Users.ToList();
+            return Ok(users);
         }
 
-        // GET: api/Users/5
+        // GET: api/Users/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<ApplicationUser>> GetUser(string id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            if (user == null)
-                return NotFound();
+            if (userId != id && !User.IsInRole("Admin"))
+                return Forbid();
 
-            return user;
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
+
+            return Ok(user);
         }
 
         // POST: api/Users
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(User user)
+        [Authorize(Roles = "Admin")] 
+        public async Task<ActionResult<ApplicationUser>> CreateUser([FromBody] ApplicationUser user, string password, string role = "Student")
         {
-            user.CreatedAt = DateTime.UtcNow;
+            user.UserName = user.Email;
+            user.Email = user.Email;
+            var result = await _userManager.CreateAsync(user, password);
 
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            if (!await _roleManager.RoleExistsAsync(role))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(role));
+            }
+
+            await _userManager.AddToRoleAsync(user, role);
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Users/{id}
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, User user)
+        public async Task<IActionResult> UpdateUser(string id, [FromBody] ApplicationUser updatedUser)
         {
-            if (id != user.Id)
-                return BadRequest();
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var existingUser = await _context.Users.FindAsync(id);
-            if (existingUser == null)
-                return NotFound();
+            if (userId != id && !User.IsInRole("Admin"))
+                return Forbid();
 
-            existingUser.FullName = user.FullName;
-            existingUser.Email = user.Email;
-            existingUser.PasswordHash = user.PasswordHash;
-            existingUser.Role = user.Role;
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
 
-            await _context.SaveChangesAsync();
+            user.FullName = updatedUser.FullName;
+            user.Email = updatedUser.Email;
+            user.UserName = updatedUser.Email;
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
 
             return NoContent();
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Users/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteUser(string id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
-                return NotFound();
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null) return NotFound();
 
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            var result = await _userManager.DeleteAsync(user);
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
 
             return NoContent();
         }

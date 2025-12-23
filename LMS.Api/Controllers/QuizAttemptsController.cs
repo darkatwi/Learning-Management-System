@@ -1,11 +1,13 @@
 ﻿using LearningManagementSystem.Models;
 using LMS.Api.Data;
 using LMS.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LMS.Api.Controllers
 {
+    [Authorize] 
     [Route("api/[controller]")]
     [ApiController]
     public class QuizAttemptsController : ControllerBase
@@ -15,6 +17,7 @@ namespace LMS.Api.Controllers
 
         // POST /quizzes/{quizId}/attempts
         [HttpPost("/quizzes/{quizId}/attempts")]
+        [Authorize(Roles = "Student")] 
         public async Task<ActionResult<QuizAttempt>> CreateAttempt(int quizId, QuizAttempt attempt)
         {
             attempt.QuizId = quizId;
@@ -26,8 +29,11 @@ namespace LMS.Api.Controllers
 
         // GET /quizzes/{quizId}/attempts/{userId}
         [HttpGet("/quizzes/{quizId}/attempts/{userId}")]
-        public async Task<ActionResult<IEnumerable<QuizAttempt>>> GetAttempt(int quizId, int userId)
+        public async Task<ActionResult<IEnumerable<QuizAttempt>>> GetAttempt(int quizId, string userId)
         {
+            if (User.FindFirst("sub")?.Value != userId && !User.IsInRole("Instructor") && !User.IsInRole("Admin"))
+                return Forbid();
+
             return await _context.QuizAttempts
                 .Where(a => a.QuizId == quizId && a.UserId == userId)
                 .Include(a => a.StudentAnswers)
@@ -36,8 +42,13 @@ namespace LMS.Api.Controllers
 
         // POST /quiz-attempts/{attemptId}/answers
         [HttpPost("/quiz-attempts/{attemptId}/answers")]
+        [Authorize(Roles = "Student")] 
         public async Task<ActionResult<StudentAnswer>> SubmitAnswer(int attemptId, StudentAnswer answer)
         {
+            var attempt = await _context.QuizAttempts.FindAsync(attemptId);
+            if (attempt == null) return NotFound();
+            if (attempt.UserId != User.FindFirst("sub")?.Value) return Forbid();
+
             answer.QuizAttemptId = attemptId;
             _context.StudentAnswers.Add(answer);
             await _context.SaveChangesAsync();
@@ -48,6 +59,11 @@ namespace LMS.Api.Controllers
         [HttpGet("/quiz-attempts/{attemptId}/answers")]
         public async Task<ActionResult<IEnumerable<StudentAnswer>>> GetSubmittedAnswers(int attemptId)
         {
+            var attempt = await _context.QuizAttempts.FindAsync(attemptId);
+            if (attempt == null) return NotFound();
+            if (attempt.UserId != User.FindFirst("sub")?.Value && !User.IsInRole("Instructor") && !User.IsInRole("Admin"))
+                return Forbid();
+
             return await _context.StudentAnswers
                 .Where(a => a.QuizAttemptId == attemptId)
                 .Include(a => a.Answer)

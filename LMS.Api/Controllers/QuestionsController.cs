@@ -1,11 +1,13 @@
 ﻿using LearningManagementSystem.Models;
 using LMS.Api.Data;
 using LMS.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LMS.Api.Controllers
 {
+    [Authorize] 
     [Route("api/[controller]")]
     [ApiController]
     public class QuestionsController : ControllerBase
@@ -25,6 +27,7 @@ namespace LMS.Api.Controllers
 
         // POST /quizzes/{quizId}/questions
         [HttpPost("/quizzes/{quizId}/questions")]
+        [Authorize(Roles = "Instructor,Admin")] 
         public async Task<ActionResult<Question>> CreateQuestion(int quizId, Question question)
         {
             question.QuizId = quizId;
@@ -36,12 +39,16 @@ namespace LMS.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> GetQuestion(int id)
         {
-            var question = await _context.Questions.Include(q => q.Answers).FirstOrDefaultAsync(q => q.Id == id);
+            var question = await _context.Questions
+                .Include(q => q.Answers)
+                .FirstOrDefaultAsync(q => q.Id == id);
+
             if (question == null) return NotFound();
             return question;
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Instructor,Admin")]
         public async Task<IActionResult> UpdateQuestion(int id, Question question)
         {
             if (id != question.Id) return BadRequest();
@@ -51,6 +58,7 @@ namespace LMS.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Instructor,Admin")]
         public async Task<IActionResult> DeleteQuestion(int id)
         {
             var question = await _context.Questions.FindAsync(id);
@@ -60,16 +68,18 @@ namespace LMS.Api.Controllers
             return NoContent();
         }
 
-        // Answers endpoints
         // GET /questions/{questionId}/answers
         [HttpGet("/questions/{questionId}/answers")]
         public async Task<ActionResult<IEnumerable<Answer>>> GetAnswers(int questionId)
         {
-            return await _context.Answers.Where(a => a.QuestionId == questionId).ToListAsync();
+            return await _context.Answers
+                .Where(a => a.QuestionId == questionId)
+                .ToListAsync();
         }
 
         // POST /questions/{questionId}/answers
         [HttpPost("/questions/{questionId}/answers")]
+        [Authorize(Roles = "Instructor,Admin")]
         public async Task<ActionResult<Answer>> CreateAnswer(int questionId, Answer answer)
         {
             answer.QuestionId = questionId;

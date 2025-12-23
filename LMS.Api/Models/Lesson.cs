@@ -14,7 +14,6 @@ namespace LearningManagementSystem.Models
         public int EstimatedDuration { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // Navigation properties
         public Course Course { get; set; }
         public ICollection<Quiz> Quizzes { get; set; }
         public ICollection<LessonCompletion> LessonCompletions { get; set; }

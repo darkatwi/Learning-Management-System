@@ -8,18 +8,16 @@ namespace LearningManagementSystem.Models
     {
         public int Id { get; set; }
         public int QuizId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
 
         public int Score { get; set; }
 
-        // Track attempt times
-        public DateTime StartedAt { get; set; } = DateTime.UtcNow; // when the attempt starts
-        public DateTime? CompletedAt { get; set; } // optional, when the attempt ends
-        public DateTime AttemptDate { get; set; } = DateTime.UtcNow; // can keep for historical logging
+        public DateTime StartedAt { get; set; } = DateTime.UtcNow; 
+        public DateTime? CompletedAt { get; set; }
+        public DateTime AttemptDate { get; set; } = DateTime.UtcNow; 
 
-        // Navigation properties
         public Quiz Quiz { get; set; }
-        public User User { get; set; }
         public ICollection<StudentAnswer> StudentAnswers { get; set; }
     }
 }

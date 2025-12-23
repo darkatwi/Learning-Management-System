@@ -12,7 +12,6 @@ namespace LearningManagementSystem.Models
         public int PassingScore { get; set; }
         public int TimeLimit { get; set; }
 
-        // Navigation properties
         public Course Course { get; set; }
         public Lesson Lesson { get; set; }
         public ICollection<Question> Questions { get; set; }

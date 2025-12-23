@@ -1,11 +1,13 @@
 ﻿using LearningManagementSystem.Models;
 using LMS.Api.Data;
 using LMS.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace LMS.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class QuizzesController : ControllerBase
@@ -33,7 +35,9 @@ namespace LMS.Api.Controllers
                 .ToListAsync();
         }
 
+        // POST /api/Quizzes
         [HttpPost]
+        [Authorize(Roles = "Instructor,Admin")] 
         public async Task<ActionResult<Quiz>> CreateQuiz(Quiz quiz)
         {
             _context.Quizzes.Add(quiz);
@@ -41,30 +45,42 @@ namespace LMS.Api.Controllers
             return CreatedAtAction(nameof(GetQuiz), new { id = quiz.Id }, quiz);
         }
 
+        // GET /api/Quizzes/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Quiz>> GetQuiz(int id)
         {
-            var quiz = await _context.Quizzes.Include(q => q.Questions).FirstOrDefaultAsync(q => q.Id == id);
+            var quiz = await _context.Quizzes
+                .Include(q => q.Questions)
+                .FirstOrDefaultAsync(q => q.Id == id);
+
             if (quiz == null) return NotFound();
             return quiz;
         }
 
+        // PUT /api/Quizzes/{id}
         [HttpPut("{id}")]
+        [Authorize(Roles = "Instructor,Admin")]
         public async Task<IActionResult> UpdateQuiz(int id, Quiz quiz)
         {
             if (id != quiz.Id) return BadRequest();
+
             _context.Entry(quiz).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
+        // DELETE /api/Quizzes/{id}
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Instructor,Admin")] 
         public async Task<IActionResult> DeleteQuiz(int id)
         {
             var quiz = await _context.Quizzes.FindAsync(id);
             if (quiz == null) return NotFound();
+
             _context.Quizzes.Remove(quiz);
             await _context.SaveChangesAsync();
+
             return NoContent();
         }
     }

@@ -13,11 +13,12 @@ namespace LearningManagementSystem.Models
         public string Category { get; set; }
         public string Difficulty { get; set; }
         public string Thumbnail { get; set; }
-        public int CreatedBy { get; set; }
+        public string CreatedById { get; set; }
+        public ApplicationUser CreatedBy { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public bool IsPublished { get; set; } = false;
 
-        // Navigation properties
         public User Creator { get; set; }
         public ICollection<Lesson> Lessons { get; set; }
         public ICollection<Quiz> Quizzes { get; set; }
