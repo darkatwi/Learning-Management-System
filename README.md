@@ -111,6 +111,7 @@ LMS.Api/
 Here’s a preview of the Users API in Swagger UI:
 
 ![Swagger UI](LMS.Api/Assetss/swagger.png.png)
+<img src="LMS.Api/Assetss/swagger.png.png" width="600" />
 
 ## API Testing
 
@@ -244,7 +245,7 @@ All **primary keys**, **foreign keys**, and **relationships** are defined in the
 
 Here’s a visual representation of the database structure:
 
-![LMS Database ER Diagram](LMS.Api/Assetss/sql.png)
+<img src="LMS.Api/Assetss/sql.png" width="600" />
 
 
 
