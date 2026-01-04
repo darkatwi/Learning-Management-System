@@ -206,7 +206,7 @@ A **React frontend** has been added and fully integrated with the backend authen
 
 * **CoursePage:**
 <img src="LMS.Api/Assetss/coursepage.png" width="500" />
-* **CoursePage filtered**
+* **CoursePage-filtered**
  <img src="LMS.Api/Assetss/coursepage filtered.png" width="500" />
 
 
