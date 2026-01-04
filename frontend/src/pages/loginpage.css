@@ -1,0 +1,277 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.login-page {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+
+.login-left {
+    flex: 0 0 50%;
+    position: relative;
+    background: #5A0E9C;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 0;
+    min-height: 100vh;
+}
+
+
+.left-content {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    width: 100%;
+    text-align: center;
+    margin: 3rem auto;
+}
+
+.brand-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.brand-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.first-letter {
+    position: relative;
+    display: inline-block;
+}
+
+.brand-cap {
+    position: absolute;
+    top: -36px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+}
+
+.purple-block {
+    width: 70px;
+    height: 8px;
+    border-radius: 10px;
+    background: #720e9e;
+    margin: 0.5rem auto 1.5rem auto;
+    opacity: 0.5;
+}
+
+.tagline {
+    font-size: 2rem;
+    margin: 1.5rem 0 2rem 0;
+    line-height: 1.3;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.left-content p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.caps-area {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: transparent;
+}
+
+.float-cap {
+    position: absolute;
+    color: rgba(255,255,255,0.9);
+    opacity: 0.2;
+    animation: float 7s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(-12px) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(12px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(-12px) rotate(-5deg);
+    }
+}
+
+.stats-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1rem;
+    justify-content: center;
+}
+
+.stats-box {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    min-width: 140px;
+    max-width: 170px;
+    transition: 0.3s;
+}
+
+    .stats-box:hover {
+        background: rgba(255,255,255,0.25);
+    }
+
+.login-right {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #fff;
+    padding: 4rem;
+}
+
+.login-form {
+    max-width: 24rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; 
+}
+
+.align-with-left {
+    font-size: 2.6rem; 
+    margin: 0 0 0.25rem 0; 
+    color: #5A0E9C;
+}
+
+    .align-with-left + p {
+        font-size: 1.15rem;
+        margin: 0 0 0.75rem 0; 
+        color: #333;
+    }
+
+.input {
+    padding: 0.85rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+
+.password-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem; 
+}
+
+.forgot-password {
+    font-size: 0.95rem;
+    color: #5A0E9C;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+.button.signin {
+    background: #5A0E9C;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem; 
+    padding: 0.85rem;
+    text-transform: none; 
+    border-radius: 0.6rem;
+    transition: 0.3s;
+    margin-top: 0.25rem;
+}
+
+    .button.signin:hover {
+        background: #720e9e;
+    }
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 0.75rem 0; 
+    font-size: 0.85rem;
+    color: #666;
+}
+
+    .or-divider::before,
+    .or-divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .or-divider:not(:empty)::before {
+        margin-right: 0.5em;
+    }
+
+    .or-divider:not(:empty)::after {
+        margin-left: 0.5em;
+    }
+
+.social-buttons.inline {
+    display: flex;
+    gap: 0.25rem; 
+    margin-top: 0.25rem; 
+}
+
+.social-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    background: #f5f5f5;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+    .social-button:hover {
+        background: #e5e5e5;
+    }
+
+.social-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.signup-text.centered {
+    text-align: center;
+    margin-top: 0.75rem; 
+    font-weight: 500;
+    color: #333;
+}
+
+.signup-link {
+    color: #5A0E9C;
+    cursor: pointer;
+    font-weight: 600;
+}

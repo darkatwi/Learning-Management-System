@@ -9,6 +9,20 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --------------------- CORS ---------------------
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:5173") // your React dev server
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                      });
+});
+// --------------------------------------------------
+
 // Database
 builder.Services.AddDbContext<LmsDbContext>(options =>
     options.UseSqlServer(
@@ -81,7 +95,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Middleware
+// --------------------- Middleware ---------------------
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -89,6 +103,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Enable CORS
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
