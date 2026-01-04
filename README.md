@@ -182,8 +182,8 @@ A **React frontend** has been added and fully integrated with the backend authen
 
 **Screenshots:**
 
-* **Login Page:** `/LMS.Frontend/screenshots/login.png`
-* **Auth API in Swagger:** `/LMS.Api/Assets/auth-swagger.png`
+* **Login Page:** `<img src="LMS.Api/Assetss/loginpage.png" width="500" />`
+* **Auth API in Swagger:** `<img src="LMS.Api/Assetss/api auth.png" width="500" />`
 
 **Future Improvements:**
 
@@ -202,7 +202,8 @@ A **React frontend** has been added and fully integrated with the backend authen
 
 **Screenshot:**
 
-* `/LMS.Frontend/screenshots/courses-list.png`
+* `<img src="LMS.Api/Assetss/coursepage.png" width="500" />`
+* `<img src="LMS.Api/Assetss/coursepage filtered.png" width="500" />`
 
 
 
