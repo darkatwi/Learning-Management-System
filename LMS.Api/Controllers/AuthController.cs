@@ -33,8 +33,10 @@ namespace LMS.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            if (!await _roleManager.RoleExistsAsync(dto.Role))
-                await _roleManager.CreateAsync(new IdentityRole(dto.Role));
+            var role = string.IsNullOrWhiteSpace(dto.Role) ? "Student" : dto.Role;
+
+            if (!await _roleManager.RoleExistsAsync(role))
+                await _roleManager.CreateAsync(new IdentityRole(role));
 
             var user = new ApplicationUser
             {
@@ -44,12 +46,20 @@ namespace LMS.Api.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, dto.Password);
-            if (!result.Succeeded) return BadRequest(result.Errors);
 
-            await _userManager.AddToRoleAsync(user, dto.Role);
+            if (!result.Succeeded)
+                return BadRequest(new
+                {
+                    message = "Registration failed",
+                    errors = result.Errors.Select(e => e.Description)
+                });
+
+            await _userManager.AddToRoleAsync(user, role);
 
             return Ok("User registered successfully");
         }
+
+
 
         // -------------------
         // LOGIN

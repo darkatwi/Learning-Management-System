@@ -7,6 +7,7 @@ import axios from "axios";
 import "./loginpage.css";
 
 export function RegisterPage({ onNavigate }) {
+    const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -35,14 +36,21 @@ export function RegisterPage({ onNavigate }) {
 
         setLoading(true);
         try {
-            await axios.post("http://localhost:5285/api/auth/register", { email, password });
+            await axios.post("http://localhost:5285/api/auth/register", {
+                fullName,
+                email,
+                password,
+                role: "Student" // default role for frontend registration
+            });
+
             setSuccess("Registration successful! You can now log in.");
+            setFullName("");
             setEmail("");
             setPassword("");
             setConfirmPassword("");
         } catch (err) {
-            console.error("Registration failed:", err);
-            setError("Registration failed. Email may already be taken.");
+            console.error("Registration failed:", err.response || err);
+            setError("Registration failed. Email may already be taken or fields are missing.");
         } finally {
             setLoading(false);
         }
@@ -106,7 +114,6 @@ export function RegisterPage({ onNavigate }) {
                 </div>
             </div>
 
-
             <div className="login-right">
                 <form className="login-form" onSubmit={handleRegister}>
                     <h2 className="align-with-left">Create Account</h2>
@@ -114,6 +121,16 @@ export function RegisterPage({ onNavigate }) {
 
                     {error && <p className="error-message">{error}</p>}
                     {success && <p className="success-message">{success}</p>}
+
+                    <Label htmlFor="fullName">Full Name</Label>
+                    <Input
+                        id="fullName"
+                        type="text"
+                        placeholder="John Doe"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                        required
+                    />
 
                     <Label htmlFor="email">Email</Label>
                     <Input
