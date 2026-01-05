@@ -6,11 +6,19 @@ It supports user management, courses, lessons, quizzes, certificates, and lesson
 
 ## Technologies Used
 
+### Backend
 * ASP.NET Core Web API
 * Entity Framework Core
 * SQL Server
 * Swagger (OpenAPI)
 * C#
+
+### Frontend
+* React
+* Plain CSS
+* REST API Integration (JWT-secured)
+
+* Future enhancement: OAuth2 login via Google & GitHub
 
 ## Project Structure
 
@@ -22,8 +30,29 @@ LMS.Api/
 ├── Migrations/       → EF Core migrations
 ├── Program.cs        → Application entry point
 └── appsettings.json  → Configuration & connection string
+
+Frontend/ (NEW)
+├── src/
+│   ├── pages/
+│   │   ├── Login.jsx
+│   │   ├── Signup.jsx
+│   │   ├── ForgotPassword.jsx
+│   │   └── CoursesList.jsx
+│   ├── ui/
+│   └── icons/          → Plain CSS files
+└── package.json
 ```
 ## API Endpoints
+
+### Auth
+
+| Method | Endpoint                   |
+| ------ | -------------------------- |
+| POST   | /api/auth/register         |
+| POST   | /api/auth/login            |
+| POST   | /api/auth/forgot-password  |
+| POST   | /api/auth/reset-password   |
+
 
 ### Certificates
 
@@ -127,6 +156,61 @@ Swagger allows you to:
 * View users
 * Update users
 * Delete users
+
+Absolutely! Here’s a cleaner, more professional version of your update for the README. I’ve organized it, removed emoji clutter, and made it concise while keeping all the details:
+
+---
+
+## Frontend Module 
+
+A **React frontend** has been added and fully integrated with the backend authentication system.
+
+### Authentication Pages
+
+**Implemented Pages:**
+
+* Login
+* Signup
+* Forgot Password (email reset support)
+
+**Features:**
+
+* Integrated with JWT authentication API
+* Supports three user roles: **Admin**, **Instructor**, **Student**
+* Successful login stores user token and role
+* Role-based UI behavior
+
+**Screenshots:**
+
+- **Login Page**  
+  <img src="LMS.Api/Assetss/loginpage.png" width="500" />
+
+- **API Auth**  
+  <img src="LMS.Api/Assetss/api auth.png" width="500" />
+
+**Future Improvements:**
+
+* OAuth2 login via Google and GitHub
+* Social login button support in UI
+
+---
+
+### Courses Page List (NEW)
+
+**Features:**
+
+* Displays available courses
+* Users can enroll directly
+* Fully connected to backend Courses API
+
+**Screenshot:**
+
+- **CoursePage**  
+  <img src="LMS.Api/Assetss/coursepage.png" width="500" />
+
+- **CoursePage filtered**  
+  <img src="LMS.Api/Assetss/coursepage filtered.png" width="500" />
+
 
 ## Database
 
