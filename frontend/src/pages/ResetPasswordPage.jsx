@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GraduationCap, BookOpen, Award, Users, TrendingUp } from "lucide-react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -14,6 +14,15 @@ export function ResetPasswordPage({ onNavigate }) {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState(null);
     const [error, setError] = useState(null);
+
+    // Prefill email and token from URL query params
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const e = params.get("email");
+        const t = params.get("token");
+        if (e) setEmail(e);
+        if (t) setToken(t);
+    }, []);
 
     const caps = [
         { top: "10%", left: "8%", size: 100, rotate: -15 },
@@ -34,6 +43,11 @@ export function ResetPasswordPage({ onNavigate }) {
             return;
         }
 
+        if (!token || !email) {
+            setError("Email or token is missing from the link.");
+            return;
+        }
+
         setLoading(true);
         try {
             await axios.post("http://localhost:5285/api/auth/reset-password", {
@@ -41,14 +55,22 @@ export function ResetPasswordPage({ onNavigate }) {
                 token,
                 newPassword
             });
-            setMessage("Password has been reset successfully! You can now log in.");
-            setEmail("");
-            setToken("");
+
+            setMessage("Password has been reset successfully! Redirecting to login...");
+
+            setTimeout(() => {
+                onNavigate("login");
+            }, 2500);
+
             setNewPassword("");
             setConfirmPassword("");
         } catch (err) {
             console.error("Reset password failed:", err);
-            setError("Failed to reset password. Check your token and try again.");
+            if (err.response?.data?.errors) {
+                setError(JSON.stringify(err.response.data.errors));
+            } else {
+                setError("Failed to reset password. Check your token and try again.");
+            }
         } finally {
             setLoading(false);
         }
@@ -112,7 +134,7 @@ export function ResetPasswordPage({ onNavigate }) {
             <div className="login-right">
                 <form className="login-form" onSubmit={handleReset}>
                     <h2 className="align-with-left">Reset Password</h2>
-                    <p className="align-with-left">Enter your email, token from email, and new password</p>
+                    <p className="align-with-left">Enter your new password to update your account</p>
 
                     {error && <p className="error-message">{error}</p>}
                     {message && <p className="success-message">{message}</p>}
@@ -125,16 +147,18 @@ export function ResetPasswordPage({ onNavigate }) {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        readOnly // prevent editing because it's from the link
                     />
 
                     <Label htmlFor="token">Reset Token</Label>
                     <Input
                         id="token"
                         type="text"
-                        placeholder="Enter token from email"
+                        placeholder="Reset token from email"
                         value={token}
                         onChange={(e) => setToken(e.target.value)}
                         required
+                        readOnly // prevent editing because it's from the link
                     />
 
                     <Label htmlFor="newPassword">New Password</Label>

@@ -1,0 +1,343 @@
+/* Sidebar container */
+.sidebar {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+    background-color: #fff; /* same as header */
+    height: 100vh;
+    justify-content: flex-start;
+    padding-top: 30px; /* more spacing from top */
+}
+
+/* Navigation */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    gap: 15px; /* bigger gap between buttons */
+}
+
+/* Buttons */
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px; /* bigger buttons */
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-radius: 10px; /* rounder */
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 1rem; /* slightly bigger text */
+    color: #555;
+}
+
+    .sidebar-btn:hover {
+        background-color: #f0f0f0;
+        color: #000;
+    }
+
+    /* Active button */
+    .sidebar-btn.active {
+        background-color: #6b21a8; /* purple */
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+/* Icons */
+.sidebar-icon {
+    width: 24px; /* bigger */
+    height: 24px; /* bigger */
+}
+
+/* Chevron */
+.sidebar-chevron {
+    margin-left: auto;
+    width: 18px;
+    height: 18px;
+}
+
+/* Header */
+header.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px; /* bigger header */
+    padding: 0 20px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+/* Header left (logo + cap) */
+.header-left .logo-cap {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px; /* space between cap and text */
+}
+
+/* Purple background for the cap */
+.cap-icon {
+    width: 36px; /* slightly bigger */
+    height: 36px; /* slightly bigger */
+    background-color: #6b21a8; /* purple */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+    /* Cap icon itself smaller inside the background */
+    .cap-icon svg {
+        width: 18px;
+        height: 18px;
+        color: #fff; /* white */
+    }
+
+/* Logo text */
+.logo-text {
+    font-size: 1.8rem; /* bigger text */
+    font-weight: bold;
+    color: #4b0082;
+}
+
+/* Center part of header (search) */
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* longer */
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    width: 18px;
+    height: 18px;
+    opacity: 0.6; /* lower opacity */
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 12px 8px 40px; /* more padding for bigger bar */
+    border-radius: 20px; /* rounded edges */
+    border: 1px solid #ccc;
+    opacity: 0.85; /* lower opacity */
+    font-size: 1rem;
+}
+
+/* Header right (buttons + user menu) */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.icon-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: purple;
+    border-radius: 50%;
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #6b21a8, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.user-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 36px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 160px;
+    flex-direction: column;
+}
+
+.user-menu:hover .user-dropdown {
+    display: flex;
+}
+
+.user-dropdown button {
+    padding: 8px 12px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.user-dropdown hr {
+    margin: 4px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+.auth-buttons button {
+    margin-left: 8px;
+}
+
+
+.footer {
+    background-color: #ffffff; /* pure white */
+    border-top: 1px solid #e5e5e5;
+    margin-top: auto;
+    font-family: Arial, sans-serif;
+    padding: 24px 16px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-icon {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+}
+
+    .brand-icon .icon {
+        color: white;
+        height: 20px;
+        width: 20px;
+    }
+
+.brand-name {
+    font-size: 1.125rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #7c3aed, #5b21b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-text {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.footer-section h4 {
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+/* REMOVE bullets */
+.footer-section ul {
+    list-style: none; /* <-- remove bullets */
+    padding: 0;
+    margin: 0;
+}
+
+    .footer-section ul li {
+        font-size: 0.85rem;
+        color: #555;
+        margin-bottom: 6px;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+        .footer-section ul li:hover {
+            color: #7c3aed;
+        }
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.contact-icon {
+    height: 16px;
+    width: 16px;
+}
+
+.footer-bottom {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e5e5;
+    text-align: center;
+    font-size: 0.825rem;
+    color: #777;
+}
